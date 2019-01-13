@@ -24,9 +24,15 @@
         <v-icon>remove</v-icon>
       </v-btn>
       <v-toolbar-title v-text="title"/>
+      <v-spacer/>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>menu</v-icon>
       </v-btn>
+      <a
+        href="https://discordapp.com/api/oauth2/authorize?response_type=code&client_id=533948702549606400&scope=identify&redirect_uri=http%3a%2f%2flocalhost%3a3000"
+      >
+        <v-btn color="blue" @click.stop="login">ログイン</v-btn>
+      </a>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -65,6 +71,11 @@ export default {
       rightDrawer: false,
       title: "Vuetify.js"
     };
+  },
+  methods: {
+    login() {
+      console.log("logined!!");
+    }
   }
 };
 </script>
