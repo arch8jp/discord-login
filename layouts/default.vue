@@ -31,8 +31,12 @@
       <a
         href="https://discordapp.com/api/oauth2/authorize?response_type=code&client_id=533948702549606400&scope=identify&redirect_uri=http%3a%2f%2flocalhost%3a3000"
       >
-        <v-btn color="blue" @click.stop="login">ログイン</v-btn>
+        <v-btn v-if="!user" color="blue">ログイン</v-btn>
       </a>
+      <v-avatar v-if="user" size="32" color="grey lighten-4">
+        <img :src="`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`" alt="avatar">
+      </v-avatar>
+      <v-btn v-if="user" color="blue" @click.stop="logout">ログアウト</v-btn>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -56,6 +60,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -72,10 +77,11 @@ export default {
       title: "Vuetify.js"
     };
   },
+  computed: {
+    ...mapState(["user"])
+  },
   methods: {
-    login() {
-      console.log("logined!!");
-    }
+    ...mapActions(["logout"])
   }
 };
 </script>
